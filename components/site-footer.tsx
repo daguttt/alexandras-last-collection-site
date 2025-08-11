@@ -52,7 +52,15 @@ export function SiteFooter() {
             ))}
           </div>
           <p className="text-sm text-neutral-500">
-            Built by <span className="font-medium">daguttt</span>
+            Built by{' '}
+            <a
+              href="https://github.com/daguttt"
+              className="font-medium"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              daguttt
+            </a>
           </p>
         </div>
       </div>

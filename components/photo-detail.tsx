@@ -1,9 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
-import { MessageCircle } from 'lucide-react';
 
 type Photo = {
   id: string;
@@ -13,9 +12,13 @@ type Photo = {
 
 const WHATSAPP_NUMBER = '5215512345678'; // Mismo número que en el FAB. Cambia aquí también.
 
-export function PhotoDetail({ photo }: { photo: Photo }) {
-  const [zoomed, setZoomed] = useState(false);
-
+export function PhotoDetail({
+  photo,
+  inModal = false,
+}: {
+  photo: Photo;
+  inModal?: boolean;
+}) {
   const pageUrl = useMemo(() => {
     if (typeof window !== 'undefined') {
       return `${window.location.origin}/photo/${photo.id}`;
@@ -42,10 +45,7 @@ export function PhotoDetail({ photo }: { photo: Photo }) {
   return (
     <div className="relative">
       <div
-        className={`relative mx-auto w-full overflow-hidden rounded-md bg-neutral-100 ${
-          zoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'
-        }`}
-        onClick={() => setZoomed((z) => !z)}
+        className={`relative mx-auto w-full overflow-hidden rounded-md bg-neutral-100`}
         style={{ touchAction: 'manipulation' }}
       >
         <div className="relative aspect-[3/4]">
@@ -54,16 +54,14 @@ export function PhotoDetail({ photo }: { photo: Photo }) {
             alt={photo.alt}
             fill
             sizes="(max-width: 640px) 100vw, 600px"
-            className={`object-contain transition-transform duration-300 ${
-              zoomed ? 'scale-150' : 'scale-100'
-            }`}
+            className="object-contain transition-transform duration-300"
             priority
           />
         </div>
       </div>
 
       {/* Sticky CTA (matches wireframe). We keep it inside modal too for consistency. */}
-      <div className="sticky bottom-0 mt-3">
+      <div className={`bottom-0 mt-3 ${inModal ? 'relative' : 'sticky'}`}>
         <div className="flex items-center gap-2 rounded-xl bg-white p-2 shadow-none border-0">
           <Button
             className="h-12 flex-1 text-base"

@@ -13,7 +13,7 @@ export default async function Page() {
     <>
       <section
         className="bg-white flex items-center justify-center text-gray-900 relative overflow-hidden"
-        style={{ height: '70vh' }}
+        style={{ height: '55vh' }}
       >
         <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-primary to-primary-dark rounded-full blur-3xl opacity-20"></div>
         <div className="absolute bottom-16 right-16 w-80 h-80 bg-gradient-to-tl from-primary-dark to-primary rounded-full blur-3xl opacity-15"></div>
@@ -53,7 +53,7 @@ export default async function Page() {
             <Link
               key={p.id}
               href={`/photo/${p.id}`}
-              className="group relative block aspect-[3/4] overflow-hidden rounded-md bg-neutral-100"
+              className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
               aria-label={`Ver ${p.alt}`}
             >
               <Image

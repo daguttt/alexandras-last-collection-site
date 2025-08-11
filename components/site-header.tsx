@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import InstagramLogo from '@/components/instagram-logo.component';
 import FacebookLogo from '@/components/facebook-logo.component';
 import {
@@ -10,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Logo } from './logo.component';
 
 const socialLinks = [
   {
@@ -23,7 +25,6 @@ const socialLinks = [
     icon: <FacebookLogo />,
   },
 ];
-
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b">
@@ -32,7 +33,7 @@ export function SiteHeader() {
           href="/"
           className="font-semibold tracking-tight text-lg sm:text-xl"
         >
-          Alexandra Ortiz
+          <Logo className="w-auto h-12" />
         </Link>
         <div className="flex items-center gap-1">
           {socialLinks.map((s) => (
@@ -53,7 +54,6 @@ export function SiteHeader() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="es">ES</SelectItem>
-              <SelectItem value="en">EN</SelectItem>
             </SelectContent>
           </Select>
         </div>
