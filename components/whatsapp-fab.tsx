@@ -2,7 +2,7 @@
 
 import { WhatsAppLogo } from './whatsapp-logo.component';
 
-const WHATSAPP_NUMBER = '50688823775'; // Cambia a tu número (incluye código de país, sin +, espacios ni guiones)
+import { WHATSAPP_NUMBER } from '@/lib/constants';
 
 export function WhatsAppFAB({
   message = 'Hola Alexandra, me interesa conocer la colección actual.',
@@ -18,7 +18,7 @@ export function WhatsAppFAB({
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 grid p-2 place-items-center rounded-full shadow-lg"
+      className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 z-40 grid p-2 place-items-center rounded-full shadow-lg"
       style={{ backgroundColor: '#25D366' }}
     >
       <WhatsAppLogo className="size-10" />

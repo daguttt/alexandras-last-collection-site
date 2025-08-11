@@ -45,10 +45,13 @@ export default async function Page() {
         aria-labelledby="gallery-heading"
         className="container mx-auto max-w-screen-sm px-3 py-4 sm:py-6"
       >
-        <h2 id="gallery-heading" className="sr-only">
-          Colección actual
+        <h2
+          id="gallery-heading"
+          className="uppercase text-4xl text-center font-fogtwono5"
+        >
+          Miracles Collection 2025 Summer
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2 mt-6">
           {photos.map((p) => (
             <Link
               key={p.id}

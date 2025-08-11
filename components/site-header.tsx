@@ -33,7 +33,7 @@ export function SiteHeader() {
           href="/"
           className="font-semibold tracking-tight text-lg sm:text-xl"
         >
-          <Logo className="w-auto h-12" />
+          <Logo className="w-auto h-7 sm:h-12" />
         </Link>
         <div className="flex items-center gap-1">
           {socialLinks.map((s) => (

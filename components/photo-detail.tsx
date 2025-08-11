@@ -3,14 +3,13 @@
 import Image from 'next/image';
 import { useCallback, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
+import { WHATSAPP_NUMBER } from '@/lib/constants';
 
 type Photo = {
   id: string;
   src: string;
   alt: string;
 };
-
-const WHATSAPP_NUMBER = '5215512345678'; // Mismo número que en el FAB. Cambia aquí también.
 
 export function PhotoDetail({
   photo,
@@ -26,21 +25,13 @@ export function PhotoDetail({
     return `/photo/${photo.id}`;
   }, [photo.id]);
 
-  const imageUrl = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      if (photo.src.startsWith('http')) return photo.src;
-      return `${window.location.origin}${photo.src}`;
-    }
-    return photo.src;
-  }, [photo.src]);
-
   const handleWhatsAppClick = useCallback(() => {
-    const text = `Hola Alexandra, ¡me encanta esta pieza! 🧡\n\nEnlace de la pieza: ${pageUrl}\nImagen: ${imageUrl}`;
+    const text = `Hola Alexandra, ¡me encanta esta pieza!\n\nEnlace de la pieza: ${pageUrl}\n`;
     const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
       text
     )}`;
     window.open(href, '_blank', 'noopener,noreferrer');
-  }, [pageUrl, imageUrl]);
+  }, [pageUrl]);
 
   return (
     <div className="relative">
