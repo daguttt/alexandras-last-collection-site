@@ -15,12 +15,12 @@ import { Logo } from './logo.component';
 
 const socialLinks = [
   {
-    href: 'https://www.instagram.com/',
+    href: 'https://www.instagram.com/aodesignerz/',
     label: 'Instagram',
     icon: <InstagramLogo />,
   },
   {
-    href: 'https://www.facebook.com/',
+    href: 'https://www.facebook.com/AOdesignerz/',
     label: 'Facebook',
     icon: <FacebookLogo />,
   },

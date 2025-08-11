@@ -4,6 +4,7 @@ import type { SVGProps } from 'react';
 
 import InstagramLogo from '@/components/instagram-logo.component';
 import FacebookLogo from '@/components/facebook-logo.component';
+import { WHATSAPP_NUMBER } from '@/lib/constants';
 
 const WhatsAppLogoDark = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" {...props}>
@@ -16,17 +17,19 @@ const WhatsAppLogoDark = (props: SVGProps<SVGSVGElement>) => (
 
 const socialLinks = [
   {
-    href: 'https://www.instagram.com/',
+    href: 'https://www.instagram.com/aodesignerz/',
     label: 'Instagram',
     icon: <InstagramLogo />,
   },
   {
-    href: 'https://www.facebook.com/',
+    href: 'https://www.facebook.com/AOdesignerz/',
     label: 'Facebook',
     icon: <FacebookLogo />,
   },
   {
-    href: 'https://wa.me/5215512345678',
+    href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      'Hola Alexandra, me interesa conocer la colección actual.'
+    )}`,
     label: 'WhatsApp',
     icon: <WhatsAppLogoDark />,
   },
