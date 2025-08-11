@@ -13,7 +13,7 @@ export default async function Page() {
     <>
       <section
         className="bg-white flex items-center justify-center text-gray-900 relative overflow-hidden"
-        style={{ height: '55vh' }}
+        style={{ height: '75vh' }}
       >
         <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-primary to-primary-dark rounded-full blur-3xl opacity-20"></div>
         <div className="absolute bottom-16 right-16 w-80 h-80 bg-gradient-to-tl from-primary-dark to-primary rounded-full blur-3xl opacity-15"></div>
@@ -32,9 +32,7 @@ export default async function Page() {
             size="lg"
             className="bg-primary text-white hover:bg-primary-dark font-semibold px-8 py-3 text-lg"
           >
-            <Link href="#gallery" className="motion-safe:scroll-smooth">
-              Ver colección
-            </Link>
+            <Link href="#gallery">Ver colección</Link>
           </Button>
         </div>
       </section>
@@ -49,7 +47,7 @@ export default async function Page() {
           id="gallery-heading"
           className="uppercase text-4xl text-center font-fogtwono5"
         >
-          Miracles Collection 2025 Summer
+          Miracles Collection 2025
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2 mt-6">
           {photos.map((p) => (

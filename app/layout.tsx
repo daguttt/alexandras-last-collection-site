@@ -23,7 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fogtwono5.variable}`}>
+    <html
+      lang="en"
+      className={`${fogtwono5.variable} motion-safe:scroll-smooth`}
+    >
       <head>
         <style>{`
 html {
