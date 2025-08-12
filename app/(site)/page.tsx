@@ -19,13 +19,21 @@ export default async function Page() {
         <div className="absolute bottom-16 right-16 w-80 h-80 bg-gradient-to-tl from-primary-dark to-primary rounded-full blur-3xl opacity-15"></div>
 
         <div className="text-center z-10 max-w-2xl px-4">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
-            Conoce mi última colección
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight font-fogtwono5">
+            Conoce nuestra última colección
           </h1>
           <p className="text-lg sm:text-xl font-light mb-8 opacity-80 leading-relaxed">
-            Piezas únicas creadas a mano con piedras naturales y metales
-            preciosos. Cada joya cuenta una historia y refleja la belleza de lo
-            auténtico.
+            Piezas unicas y exclusivas forjadas a mano en materiales nobles como
+            la plata 950, oro de 18 quilates y engastes en{' '}
+            <a
+              href="https://www.swarovski.com/en-AA/"
+              rel="noopener noreferrer"
+              className="underline"
+              target="_blank"
+            >
+              swarovski
+            </a>{' '}
+            hacen parte de cada una de nuestras joyas
           </p>
           <Button
             asChild
