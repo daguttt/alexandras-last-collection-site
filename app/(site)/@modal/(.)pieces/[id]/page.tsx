@@ -8,7 +8,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { getPhotoById } from '@/data/photos';
+import { getPieceByPieceId } from '@/data/pieces';
 import { PhotoDetail } from '@/components/photo-detail';
 
 export default function PhotoInterceptedModal() {
@@ -16,7 +16,7 @@ export default function PhotoInterceptedModal() {
   const params = useParams<{ id: string }>();
   const [open, setOpen] = useState(true);
 
-  const photo = getPhotoById(params.id);
+  const photo = getPieceByPieceId(params.id);
 
   useEffect(() => {
     setOpen(true);

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { photos } from '@/data/photos';
+import { pieces } from '@/data/pieces';
 
 export const metadata = {
   title: 'Colección actual • Alexandra Ortiz',
@@ -45,7 +45,6 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* Added container and changed grid from 3 to 2 columns on mobile */}
       <section
         id="gallery"
         aria-labelledby="gallery-heading"
@@ -58,10 +57,10 @@ export default async function Page() {
           Miracles Collection 2025
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2 mt-6">
-          {photos.map((p) => (
+          {pieces.map((p) => (
             <Link
               key={p.id}
-              href={`/photo/${p.id}`}
+              href={`/pieces/${p.id}`}
               className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
               aria-label={`Ver ${p.alt}`}
             >

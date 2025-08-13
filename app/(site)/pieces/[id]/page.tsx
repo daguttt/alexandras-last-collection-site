@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
-import { photos, getPhotoById } from '@/data/photos';
+import { pieces, getPieceByPieceId } from '@/data/pieces';
 import { PhotoDetail } from '@/components/photo-detail';
 
 export async function generateStaticParams() {
-  return photos.map((p) => ({ id: p.id }));
+  return pieces.map((p) => ({ pieceId: p.id }));
 }
 
 export default async function PhotoPage({
@@ -12,7 +12,7 @@ export default async function PhotoPage({
   params: { id: string };
 }) {
   const { id } = await params;
-  const photo = getPhotoById(id);
+  const photo = getPieceByPieceId(id);
   if (!photo) return notFound();
 
   return (
