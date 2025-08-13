@@ -49,7 +49,7 @@ export default async function Page() {
       <section
         id="gallery"
         aria-labelledby="gallery-heading"
-        className="container mx-auto max-w-screen-sm px-3 py-4 sm:py-6"
+        className="container mx-auto max-w-screen-sm px-3 py-4 sm:py-6 scroll-mt-16"
       >
         <h2
           id="gallery-heading"
