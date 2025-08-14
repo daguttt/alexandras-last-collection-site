@@ -4,26 +4,21 @@ import Image from 'next/image';
 import { useCallback, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { WHATSAPP_NUMBER } from '@/lib/constants';
+import { Piece } from '@/data/pieces';
 
-type Photo = {
-  id: string;
-  src: string;
-  alt: string;
-};
-
-export function PhotoDetail({
-  photo,
+export function PieceDetail({
+  piece,
   inModal = false,
 }: {
-  photo: Photo;
+  piece: Piece;
   inModal?: boolean;
 }) {
   const pageUrl = useMemo(() => {
     if (typeof window !== 'undefined') {
-      return `${window.location.origin}/photo/${photo.id}`;
+      return `${window.location.origin}/pieces/${piece.id}`;
     }
-    return `/photo/${photo.id}`;
-  }, [photo.id]);
+    return `/pieces/${piece.id}`;
+  }, [piece.id]);
 
   const handleWhatsAppClick = useCallback(() => {
     const text = `Hola Alexandra, ¡me encanta esta pieza!\n\nEnlace de la pieza: ${pageUrl}\n`;
@@ -41,8 +36,8 @@ export function PhotoDetail({
       >
         <div className="relative aspect-[3/4]">
           <Image
-            src={photo.src}
-            alt={photo.alt}
+            src={piece.imageSrc}
+            alt={piece.alt}
             fill
             sizes="(max-width: 640px) 100vw, 600px"
             className="object-contain transition-transform duration-300"

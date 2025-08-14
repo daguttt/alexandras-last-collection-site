@@ -9,20 +9,20 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { getPieceByPieceId } from '@/data/pieces';
-import { PhotoDetail } from '@/components/photo-detail';
+import { PieceDetail } from '@/components/piece-detail';
 
-export default function PhotoInterceptedModal() {
+export default function PieceInterceptedModalPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
   const [open, setOpen] = useState(true);
 
-  const photo = getPieceByPieceId(params.id);
+  const piece = getPieceByPieceId(params.id);
 
   useEffect(() => {
     setOpen(true);
   }, [params.id]);
 
-  if (!photo) return null;
+  if (!piece) return null;
 
   return (
     <Dialog
@@ -33,9 +33,9 @@ export default function PhotoInterceptedModal() {
       }}
     >
       <DialogContent className="p-0 max-w-[95vw] sm:max-w-lg bg-white">
-        <DialogTitle className="sr-only">{photo.alt}</DialogTitle>
-        <DialogDescription className="sr-only">{photo.alt}</DialogDescription>
-        <PhotoDetail photo={photo} inModal />
+        <DialogTitle className="sr-only">{piece.alt}</DialogTitle>
+        <DialogDescription className="sr-only">{piece.alt}</DialogDescription>
+        <PieceDetail piece={piece} inModal />
       </DialogContent>
     </Dialog>
   );
