@@ -17,6 +17,13 @@ const WhatsAppLogoDark = (props: SVGProps<SVGSVGElement>) => (
 
 const socialLinks = [
   {
+    href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      'Hola Alexandra, me interesa conocer la colección actual.'
+    )}`,
+    label: 'WhatsApp',
+    icon: <WhatsAppLogoDark />,
+  },
+  {
     href: 'https://www.instagram.com/aodesignerz/',
     label: 'Instagram',
     icon: <InstagramLogo />,
@@ -25,13 +32,6 @@ const socialLinks = [
     href: 'https://www.facebook.com/AOdesignerz/',
     label: 'Facebook',
     icon: <FacebookLogo />,
-  },
-  {
-    href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      'Hola Alexandra, me interesa conocer la colección actual.'
-    )}`,
-    label: 'WhatsApp',
-    icon: <WhatsAppLogoDark />,
   },
 ];
 
