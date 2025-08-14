@@ -1,11 +1,24 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { GroupedGalleries } from '@/components/grouped-galleries.component';
+import { WHATSAPP_NUMBER } from '@/lib/constants';
 
 export const metadata = {
   title: 'Colección actual • Alexandra Ortiz',
   description: 'Joyería artesanal, ediciones únicas.',
 };
+
+function PersonlizedPieceButton() {
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    'Hola Alexandra, me interesa una pieza personalizada.'
+  )}`;
+
+  return (
+    <Button asChild size="lg" variant="link" className="mt-4">
+      <Link href={href}>Quiero una pieza personalizada</Link>
+    </Button>
+  );
+}
 
 export default async function Page() {
   return (
@@ -34,13 +47,10 @@ export default async function Page() {
             </a>{' '}
             hacen parte de cada una de nuestras joyas
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-primary text-white hover:bg-primary-dark font-semibold px-8 py-3 text-lg"
-          >
+          <Button asChild size="lg">
             <Link href="#gallery">Ver colección</Link>
           </Button>
+          <PersonlizedPieceButton />
         </div>
       </section>
 

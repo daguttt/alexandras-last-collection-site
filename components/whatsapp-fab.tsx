@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { WhatsAppLogo } from './whatsapp-logo.component';
 
 import { WHATSAPP_NUMBER } from '@/lib/constants';
@@ -13,7 +14,7 @@ export function WhatsAppFAB({
     message
   )}`;
   return (
-    <a
+    <Link
       href={href}
       target="_blank"
       rel="noopener noreferrer"
@@ -23,6 +24,6 @@ export function WhatsAppFAB({
     >
       <WhatsAppLogo className="size-10" />
       <span className="sr-only">WhatsApp</span>
-    </a>
+    </Link>
   );
 }
