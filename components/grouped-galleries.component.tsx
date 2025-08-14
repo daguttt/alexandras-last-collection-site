@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import {
@@ -23,6 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { useRouter } from 'next/navigation';
 
 function PlusIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -80,6 +81,21 @@ function ModalImage({ src, alt, triggerContent }: ModalImageProps) {
 
 const AnimatedLink = motion(Link);
 
+function useNextRouterScrollBackTo({
+  hashName,
+  shouldScroll,
+}: {
+  hashName: string;
+  shouldScroll: boolean;
+}) {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!shouldScroll) return;
+    router.push(hashName);
+  }, [hashName, shouldScroll]);
+}
+
 function GalleryGroup({
   groupName,
   title,
@@ -89,6 +105,11 @@ function GalleryGroup({
   const [open, setOpen] = useState(false);
   const firstTwo = items.slice(0, 2);
   const rest = items.slice(2);
+
+  useNextRouterScrollBackTo({
+    hashName: `#group-${groupName}`,
+    shouldScroll: !open,
+  });
 
   return (
     <section
