@@ -78,6 +78,8 @@ function ModalImage({ src, alt, triggerContent }: ModalImageProps) {
   );
 }
 
+const AnimatedLink = motion(Link);
+
 function GalleryGroup({
   groupName,
   title,
@@ -145,7 +147,10 @@ function GalleryGroup({
             <AnimatePresence>
               {open &&
                 rest.map((p, index) => (
-                  <motion.div
+                  <AnimatedLink
+                    href={`/pieces/${p.id}`}
+                    className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
+                    aria-label={`Ver ${p.alt || p.id}`}
                     key={p.id}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -156,21 +161,15 @@ function GalleryGroup({
                       ease: 'easeOut',
                     }}
                   >
-                    <Link
-                      href={`/pieces/${p.id}`}
-                      className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
-                      aria-label={`Ver ${p.alt || p.id}`}
-                    >
-                      <Image
-                        src={p.imageSrc || '/placeholder.svg'}
-                        alt={p.alt || p.id}
-                        fill
-                        sizes="(max-width: 640px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        priority={p.priority ?? false}
-                      />
-                    </Link>
-                  </motion.div>
+                    <Image
+                      src={p.imageSrc || '/placeholder.svg'}
+                      alt={p.alt || p.id}
+                      fill
+                      sizes="(max-width: 640px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      priority={p.priority ?? false}
+                    />
+                  </AnimatedLink>
                 ))}
             </AnimatePresence>
           </CollapsibleContent>
