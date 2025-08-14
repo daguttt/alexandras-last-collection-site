@@ -18,7 +18,7 @@ export default async function Page() {
         <div className="absolute bottom-16 right-16 w-80 h-80 bg-gradient-to-tl from-primary-dark to-primary rounded-full blur-3xl opacity-15"></div>
 
         <div className="text-center z-10 max-w-2xl px-4">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight font-fogtwono5">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 tracking-tight font-fogtwono5">
             Conoce nuestra última colección
           </h1>
           <p className="text-lg sm:text-xl font-light mb-8 opacity-80 leading-relaxed">
@@ -51,7 +51,7 @@ export default async function Page() {
       >
         <h2
           id="gallery-heading"
-          className="uppercase text-4xl text-center font-fogtwono5"
+          className="uppercase text-5xl text-center font-fogtwono5"
         >
           Miracles Collection 2025
         </h2>

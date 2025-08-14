@@ -78,9 +78,6 @@ function ModalImage({ src, alt, triggerContent }: ModalImageProps) {
   );
 }
 
-const AnimatedCollapsibleContent = motion(CollapsibleContent);
-const AnimatedLink = motion(Link);
-
 function GalleryGroup({
   groupName,
   title,
@@ -97,7 +94,11 @@ function GalleryGroup({
       aria-labelledby={`group-${groupName}`}
       className="scroll-mt-16"
     >
-      <h3 className="text-xl sm:text-2xl">{title}</h3>
+      <Link href={`#group-${groupName}`}>
+        <h3 className="text-lg text-center sm:text-2xl font-semibold">
+          {title}
+        </h3>
+      </Link>
 
       <ModalImage
         src={photoSrc}
