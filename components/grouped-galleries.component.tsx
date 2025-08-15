@@ -81,21 +81,6 @@ function ModalImage({ src, alt, triggerContent }: ModalImageProps) {
 
 const AnimatedLink = motion(Link);
 
-function useNextRouterScrollBackTo({
-  hashName,
-  shouldScroll,
-}: {
-  hashName: string;
-  shouldScroll: boolean;
-}) {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!shouldScroll) return;
-    router.push(hashName);
-  }, [hashName, shouldScroll]);
-}
-
 function GalleryGroup({
   groupName,
   title,
@@ -105,11 +90,14 @@ function GalleryGroup({
   const [open, setOpen] = useState(false);
   const firstTwo = items.slice(0, 2);
   const rest = items.slice(2);
+  const router = useRouter();
 
-  useNextRouterScrollBackTo({
-    hashName: `#group-${groupName}`,
-    shouldScroll: !open,
-  });
+  const handleGalleryOpenChange = (open: boolean) => {
+    if (!open) {
+      router.push(`#group-${groupName}`);
+    }
+    setOpen(open);
+  };
 
   return (
     <section
@@ -144,7 +132,7 @@ function GalleryGroup({
         }
       />
 
-      <Collapsible open={open} onOpenChange={setOpen}>
+      <Collapsible open={open} onOpenChange={handleGalleryOpenChange}>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2 mt-4">
           {firstTwo.map((p) => (
             <Link
