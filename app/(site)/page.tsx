@@ -8,13 +8,18 @@ export const metadata = {
   description: 'Joyería artesanal, ediciones únicas.',
 };
 
-function PersonlizedPieceButton() {
+type PersonlizedPieceButtonProps = Omit<
+  Parameters<typeof Button>[0],
+  'asChild'
+>;
+
+function PersonlizedPieceButton(props: PersonlizedPieceButtonProps) {
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     'Hola Alexandra, me interesa una pieza personalizada.'
   )}`;
 
   return (
-    <Button asChild size="lg" variant="link" className="mt-4">
+    <Button {...props} asChild>
       <Link href={href}>Quiero una pieza personalizada</Link>
     </Button>
   );
@@ -31,26 +36,33 @@ export default async function Page() {
         <div className="absolute bottom-16 right-16 w-80 h-80 bg-gradient-to-tl from-primary-dark to-primary rounded-full blur-3xl opacity-15"></div>
 
         <div className="text-center z-10 max-w-2xl px-4">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 tracking-tight font-fogtwono5">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 tracking-tight font-fogtwono5 text-balance">
             Conoce nuestra última colección
           </h1>
-          <p className="text-lg sm:text-xl font-light mb-8 opacity-80 leading-relaxed">
-            Piezas unicas y exclusivas forjadas a mano en materiales nobles como
-            la plata 950, oro de 18 quilates y engastes en{' '}
+          <p className="text-lg sm:text-xl font-light mb-8 opacity-80 leading-relaxed text-balance">
+            Cada una de nuestras joyas es una pieza única y exclusiva, forjada a
+            mano en materiales nobles como plata 950 y oro de 18 quilates, con
+            delicados engastes en{' '}
             <a
               href="https://www.swarovski.com/en-AA/"
               rel="noopener noreferrer"
               className="underline"
               target="_blank"
             >
-              swarovski
+              Swarovski
             </a>{' '}
-            hacen parte de cada una de nuestras joyas
+            que realzan su belleza y distinción.
           </p>
-          <Button asChild size="lg">
-            <Link href="#gallery">Ver colección</Link>
-          </Button>
-          <PersonlizedPieceButton />
+          <div className="flex gap-3 flex-wrap justify-center items-center">
+            <Button asChild size="lg" className="text-md">
+              <Link href="#gallery">Ver colección</Link>
+            </Button>
+            <PersonlizedPieceButton
+              size="lg"
+              variant="secondary"
+              className="font-normal text-md"
+            />
+          </div>
         </div>
       </section>
 
