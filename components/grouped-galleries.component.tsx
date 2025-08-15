@@ -79,7 +79,7 @@ function ModalImage({ src, alt, triggerContent }: ModalImageProps) {
   );
 }
 
-const AnimatedLink = motion(Link);
+const AnimatedLink = motion.create(Link);
 
 function GalleryGroup({
   groupName,

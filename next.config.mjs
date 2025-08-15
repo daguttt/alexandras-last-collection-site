@@ -18,15 +18,15 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/ingest/static/:path*',
+        source: '/G8Bcyc/static/:path*',
         destination: 'https://us-assets.i.posthog.com/static/:path*',
       },
       {
-        source: '/ingest/:path*',
+        source: '/G8Bcyc/:path*',
         destination: 'https://us.i.posthog.com/:path*',
       },
       {
-        source: '/ingest/flags',
+        source: '/G8Bcyc/flags',
         destination: 'https://us.i.posthog.com/flags',
       },
     ];
