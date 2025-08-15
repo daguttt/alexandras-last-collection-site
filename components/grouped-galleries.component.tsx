@@ -140,6 +140,7 @@ function GalleryGroup({
               href={`/pieces/${p.id}`}
               className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
               aria-label={`Ver ${p.alt || p.id}`}
+              scroll={false}
             >
               <Image
                 src={p.imageSrc || '/placeholder.svg'}
@@ -158,6 +159,7 @@ function GalleryGroup({
                 rest.map((p, index) => (
                   <AnimatedLink
                     href={`/pieces/${p.id}`}
+                    scroll={false}
                     className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
                     aria-label={`Ver ${p.alt || p.id}`}
                     key={p.id}
