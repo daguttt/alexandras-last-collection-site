@@ -24,10 +24,10 @@ export const tigereyeGemstoneGroup: Group = {
 
 // Preciosa Piedra Luna y Espinela
 export const moonStoneAndRubySpinelGroup: Group = {
-  title: 'Piedra preciosa: Piedra Luna y Espinela',
+  title: 'Piedra preciosa Piedra Luna y Espinela',
   name: 'moon-stone-and-ruby-spinel',
   photoSrc:
-    'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndk2P0vxouM284B6yQmVL71g5FdSrlR3bfaUqH',
+    'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndrkZ0BHgS3gQDhXCyRcINmZ5atEGOdAHMv89V',
 };
 
 export const groups: Group[] = [
