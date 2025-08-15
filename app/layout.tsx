@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
 import localFont from 'next/font/local';
+import { Nunito_Sans } from 'next/font/google';
+
 import { PostHogProvider } from '@/components/posthog-provider';
 
 import './globals.css';
@@ -9,8 +9,15 @@ import './globals.css';
 const fogtwono5 = localFont({
   src: './fogtwono5.woff2',
   display: 'swap',
-  fallback: ['Geist Sans', 'sans-serif'],
+  fallback: ['serif'],
   variable: '--font-fogtwono5',
+});
+
+const nunitoSans = Nunito_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['system-ui', 'sans-serif'],
+  variable: '--font-nunito-sans',
 });
 
 export const metadata: Metadata = {
@@ -26,17 +33,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fogtwono5.variable} motion-safe:scroll-smooth`}
+      className={`${fogtwono5.variable} ${nunitoSans.variable} font-body motion-safe:scroll-smooth`}
     >
-      <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
-      </head>
+      <head></head>
       <body>
         <PostHogProvider>{children}</PostHogProvider>
       </body>

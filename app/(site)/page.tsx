@@ -54,13 +54,13 @@ export default async function Page() {
             que realzan su belleza y distinción.
           </p>
           <div className="flex gap-3 flex-wrap justify-center items-center">
-            <Button asChild size="lg" className="text-md">
+            <Button asChild size="lg" className="text-lg font-semibold">
               <Link href="#gallery">Ver colección</Link>
             </Button>
             <PersonlizedPieceButton
               size="lg"
               variant="secondary"
-              className="font-normal text-md"
+              className="font-normal text-base"
             />
           </div>
         </div>
