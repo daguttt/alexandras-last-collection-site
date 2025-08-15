@@ -21,7 +21,7 @@ export function PieceDetail({
   }, [piece.id]);
 
   const handleWhatsAppClick = useCallback(() => {
-    const text = `Hola Alexandra, ¡me encanta esta pieza!\n\nEnlace de la pieza: ${pageUrl}\n`;
+    const text = `Hola Alexandra, ¡me encanta la pieza con el código: ${piece.id}!\n\nEnlace de la pieza: ${pageUrl}\n`;
     const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
       text
     )}`;
