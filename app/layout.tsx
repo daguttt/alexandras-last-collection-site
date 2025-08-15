@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import localFont from 'next/font/local';
+import { PostHogProvider } from '@/components/posthog-provider';
 
 import './globals.css';
 
@@ -36,7 +37,9 @@ html {
 }
         `}</style>
       </head>
-      <body>{children}</body>
+      <body>
+        <PostHogProvider>{children}</PostHogProvider>
+      </body>
     </html>
   );
 }
