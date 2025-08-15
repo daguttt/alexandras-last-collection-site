@@ -70,14 +70,6 @@ export const pieces: Piece[] = [
     group: 'tigereye-gemstone',
   },
   {
-    id: 'MC-23',
-    imageSrc:
-      'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndCDsATih0sgPRQy5hJNBlW4MowzxmbqYL7C1K',
-    alt: '',
-    filename: 'MC-23.jpg',
-    group: 'tigereye-gemstone',
-  },
-  {
     id: 'MC-11',
     imageSrc:
       'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndJ9xhuuCIq9BlgDPNk0VFTKX7EndbwOuYHAtr',

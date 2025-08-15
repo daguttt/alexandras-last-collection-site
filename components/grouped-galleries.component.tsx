@@ -106,7 +106,7 @@ function GalleryGroup({
       className="scroll-mt-16"
     >
       <Link href={`#group-${groupName}`}>
-        <h3 className="text-lg text-center sm:text-2xl font-semibold">
+        <h3 className="text-lg text-center sm:text-2xl font-semibold font-fogtwono5">
           {title}
         </h3>
       </Link>
