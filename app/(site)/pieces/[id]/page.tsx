@@ -1,16 +1,36 @@
 import { notFound } from 'next/navigation';
 import { pieces, getPieceByPieceId } from '@/data/pieces';
 import { PieceDetail } from '@/components/piece-detail';
+import type { Metadata } from 'next';
 
 export async function generateStaticParams() {
   return pieces.map((p) => ({ id: p.id }));
 }
 
-export default async function PiecePage({
-  params,
-}: {
+type PiecePageProps = {
   params: Promise<{ id: string }>;
-}) {
+};
+
+export async function generateMetadata({
+  params,
+}: PiecePageProps): Promise<Metadata> {
+  const { id } = await params;
+  const piece = getPieceByPieceId(id);
+  if (!piece) return notFound();
+
+  return {
+    openGraph: {
+      images: [
+        {
+          url: piece.imageSrc,
+          alt: piece.alt,
+        },
+      ],
+    },
+  };
+}
+
+export default async function PiecePage({ params }: PiecePageProps) {
   const { id } = await params;
   const piece = getPieceByPieceId(id);
   if (!piece) return notFound();
