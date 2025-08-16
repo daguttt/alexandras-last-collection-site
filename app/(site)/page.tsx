@@ -37,7 +37,7 @@ export default async function Page() {
 
         <div className="text-center z-10 max-w-2xl px-4">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 tracking-tight font-fogtwono5 text-balance">
-            Conoce nuestra última colección
+            Conoce una de nuestras últimas colecciones
           </h1>
           <p className="text-lg sm:text-xl font-light mb-8 opacity-80 leading-relaxed text-balance">
             Cada una de nuestras joyas es una pieza única y exclusiva, forjada a
