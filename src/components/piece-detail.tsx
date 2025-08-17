@@ -5,6 +5,7 @@ import { useCallback, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { WHATSAPP_NUMBER } from '@/lib/constants';
 import { Piece } from '@/data/pieces';
+import { cx } from 'class-variance-authority';
 
 export function PieceDetail({
   piece,
@@ -29,10 +30,12 @@ export function PieceDetail({
   }, [pageUrl]);
 
   return (
-    <div className="relative">
+    <div className="relative rounded-md">
       <div
-        className={`relative mx-auto w-full overflow-hidden rounded-md bg-neutral-100`}
-        style={{ touchAction: 'manipulation' }}
+        className={cx(
+          'relative mx-auto w-full bg-neutral-100 touch-manipulation',
+          inModal && 'max-h-[80vh] overflow-y-auto'
+        )}
       >
         <div className="relative aspect-[3/4]">
           <Image
