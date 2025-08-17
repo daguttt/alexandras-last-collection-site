@@ -1,42 +1,22 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import { getPieceByPieceId } from '@/data/pieces';
-import { PieceDetail } from '@/components/piece-detail';
+import { notFound } from 'next/navigation';
+import { PieceModalComponent } from './piece-modal.component';
+import { pieces } from '@/data/pieces';
 
-export default function PieceInterceptedModalPage() {
-  const router = useRouter();
-  const params = useParams<{ id: string }>();
-  const [open, setOpen] = useState(true);
+export async function generateStaticParams() {
+  return pieces.map((p) => ({ id: p.id }));
+}
 
-  const piece = getPieceByPieceId(params.id);
+type PieceInterceptedModalPageProps = {
+  params: Promise<{ id: string }>;
+};
 
-  useEffect(() => {
-    setOpen(true);
-  }, [params.id]);
+export default async function PieceInterceptedModalPage({
+  params,
+}: PieceInterceptedModalPageProps) {
+  const { id } = await params;
+  const piece = getPieceByPieceId(id);
+  if (!piece) notFound();
 
-  if (!piece) return null;
-
-  return (
-    <Dialog
-      open={open}
-      onOpenChange={(o) => {
-        setOpen(o);
-        if (!o) router.back();
-      }}
-    >
-      <DialogContent className="p-0 max-w-[95vw] sm:max-w-lg bg-white">
-        <DialogTitle className="sr-only">{piece.alt}</DialogTitle>
-        <DialogDescription className="sr-only">{piece.alt}</DialogDescription>
-        <PieceDetail piece={piece} inModal />
-      </DialogContent>
-    </Dialog>
-  );
+  return <PieceModalComponent piece={piece} />;
 }
