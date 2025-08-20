@@ -11,7 +11,7 @@ export default function Layout({
   modal: ReactNode;
 }) {
   return (
-    <div className="min-h-dvh bg-white text-neutral-900">
+    <div className="min-h-dvh bg-background text-foreground">
       <SiteHeader />
       <main>{children}</main>
       <SiteFooter />

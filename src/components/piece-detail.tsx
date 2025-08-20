@@ -51,7 +51,7 @@ export function PieceDetail({
 
       {/* Sticky CTA (matches wireframe). We keep it inside modal too for consistency. */}
       <div className={`bottom-0 mt-3 ${inModal ? 'relative' : 'sticky'}`}>
-        <div className="flex items-center gap-2 rounded-xl bg-white p-2 shadow-none border-0">
+        <div className="flex items-center gap-2 rounded-xl bg-background p-2 shadow-none border-0">
           <Button
             className="h-12 flex-1 text-base"
             onClick={handleWhatsAppClick}

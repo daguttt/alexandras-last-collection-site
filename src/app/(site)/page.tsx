@@ -29,7 +29,7 @@ export default async function Page() {
   return (
     <>
       <section
-        className="bg-white flex items-center justify-center text-gray-900 relative overflow-hidden"
+        className="flex items-center justify-center relative overflow-hidden"
         style={{ height: '75vh' }}
       >
         <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-primary to-primary-dark rounded-full blur-3xl opacity-20"></div>
