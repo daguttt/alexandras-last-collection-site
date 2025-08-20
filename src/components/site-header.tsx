@@ -27,7 +27,7 @@ const socialLinks = [
 ];
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b">
+    <header className="sticky top-0 z-40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container mx-auto max-w-screen-sm px-3 h-14 sm:h-16 flex items-center justify-between">
         <Link
           href="/"

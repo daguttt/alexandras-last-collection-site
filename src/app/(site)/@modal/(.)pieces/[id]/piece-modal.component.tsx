@@ -27,7 +27,7 @@ export function PieceModalComponent({ piece }: { piece: Piece }) {
         if (!o) router.back();
       }}
     >
-      <DialogContent className="p-2 max-w-[95vw] sm:max-w-lg bg-white">
+      <DialogContent className="p-2 max-w-[95vw] sm:max-w-lg bg-background">
         <DialogTitle className="sr-only">{piece.alt}</DialogTitle>
         <DialogDescription className="sr-only">{piece.alt}</DialogDescription>
         <PieceDetail piece={piece} inModal />
