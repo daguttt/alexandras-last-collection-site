@@ -1,5 +1,7 @@
-onlyBuiltDependencies:
-  - core-js
-
 packages:
   - .
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - core-js
+  - sharp
