@@ -1,4 +1,4 @@
-export type GroupName = 'tigereye-gemstone' | 'moon-stone-and-ruby-spinel';
+export type GroupName = 'tigereye-gemstone' | 'moon-stone-and-ruby-spinel' | 'carnelian-gemstone';
 
 export type Piece = {
   id: string;
@@ -30,9 +30,16 @@ export const moonStoneAndRubySpinelGroup: Group = {
     'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndrkZ0BHgS3gQDhXCyRcINmZ5atEGOdAHMv89V',
 };
 
+export const cornalinaGemstomeGroup: Group = {
+  title: "Piedra preciosa Cornalina",
+  name: "carnelian-gemstone",
+  photoSrc: "https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndS72IAU5ZRd83G54z29pCV07EDgWuIMtqFixc"
+}
+
 export const groups: Group[] = [
   tigereyeGemstoneGroup,
   moonStoneAndRubySpinelGroup,
+  cornalinaGemstomeGroup
 ];
 
 export const pieces: Piece[] = [
@@ -125,6 +132,54 @@ export const pieces: Piece[] = [
     filename: 'MC-23.webp',
     group: 'moon-stone-and-ruby-spinel',
   },
+  {
+    id: 'MC-20',
+    imageSrc:
+      'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndMgCBb0VPfqkU5RLgJhD7laYCtWxwNi4QzOAp',
+    alt: '',
+    filename: 'MC-20.jpg',
+    group: 'carnelian-gemstone',
+  },
+  {
+    id: 'MC-06',
+    imageSrc:
+      'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndu88nfXF2SkaCWTZc19z5ULBfInGmxDyMr86P',
+    alt: '',
+    filename: 'MC-06.jpg',
+    group: 'carnelian-gemstone',
+  },
+  {
+    id: 'MC-01',
+    imageSrc:
+      'https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndKMnPixMognzwPB3a9be2dJEDjcLYlOs4N0tQ',
+    alt: '',
+    filename: 'MC-01.jpg',
+    group: 'carnelian-gemstone',
+  },
+  {
+    id: "MC-08",
+    imageSrc:
+      "https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7nd0iine6vmXN7ndskBjKalIr8uFTefZLchigtV",
+    alt: "",
+    filename: "MC-08.jpg",
+    group: "carnelian-gemstone",
+  },
+  {
+    id: "MC-05",
+    imageSrc:
+      "https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7ndhG2ntNsxJwer8LqKQfUpPAv3Zna9bB21zW5t",
+    alt: "",
+    filename: "MC-05.jpg",
+    group: "carnelian-gemstone",
+  },
+  {
+    id: "MC-04",
+    imageSrc:
+      "https://n9sc1cejje.ufs.sh/f/0vYCcHmXN7nd30JT6doHvKnVSbuLFBiJTxQzcje6G9h18sMW",
+    alt: "",
+    filename: "MC-04.jpg",
+    group: "carnelian-gemstone",
+  }
 ];
 
 export const groupedPieces = Object.groupBy(pieces, (p) => p.group) as Record<
