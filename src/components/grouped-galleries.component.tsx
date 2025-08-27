@@ -2,8 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useRouter } from 'next/navigation';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type RefObject,
+} from 'react';
+import { motion } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import {
   groups,
@@ -12,18 +19,13 @@ import {
   type Piece,
 } from '@/data/pieces';
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 function PlusIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -41,13 +43,6 @@ function MinusIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-type GalleryGroupProps = {
-  groupName: GroupName;
-  title: string;
-  photoSrc: string;
-  items: Piece[];
-};
-
 type ModalImageProps = {
   src: string;
   alt: string;
@@ -56,7 +51,6 @@ type ModalImageProps = {
    */
   triggerContent: React.ReactElement<React.ComponentProps<'button'>, 'button'>;
 };
-
 function ModalImage({ src, alt, triggerContent }: ModalImageProps) {
   return (
     <Dialog>
@@ -79,24 +73,104 @@ function ModalImage({ src, alt, triggerContent }: ModalImageProps) {
   );
 }
 
-const AnimatedLink = motion.create(Link);
+type GalleryItemProps = {
+  piece: Piece;
+};
+function GalleryItem({
+  piece,
+  ref,
+}: GalleryItemProps & { ref?: RefObject<HTMLAnchorElement> }) {
+  return (
+    <Link
+      ref={ref}
+      key={piece.id}
+      href={`/pieces/${piece.id}`}
+      className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
+      aria-label={`Ver ${piece.alt || piece.id}`}
+      scroll={false}
+    >
+      <Image
+        src={piece.imageSrc || '/placeholder.svg'}
+        alt={piece.alt || piece.id}
+        fill
+        sizes="(max-width: 640px) 50vw, 33vw"
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
+        priority={piece.priority ?? false}
+      />
+    </Link>
+  );
+}
 
+function useGalleryContainerHeight({
+  shouldObserve,
+}: {
+  shouldObserve: boolean;
+}) {
+  const firstGalleryItemRef = useRef<HTMLElement>(null);
+  const [galleryContainerHeight, setGalleryContainerHeight] =
+    useState<number>(200);
+
+  useEffect(() => {
+    let resizeObserver: ResizeObserver | null = null;
+    if (firstGalleryItemRef.current && shouldObserve) {
+      resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const itemHeight = entry.contentBoxSize[0].inlineSize;
+          const newHeight = Math.max(itemHeight * 1.8, 200);
+
+          setGalleryContainerHeight(newHeight);
+        }
+      });
+      resizeObserver.observe(firstGalleryItemRef.current);
+    }
+    return () => {
+      resizeObserver?.disconnect();
+    };
+  }, []);
+
+  return {
+    firstGalleryItemRef,
+    galleryContainerHeight,
+  };
+}
+
+const galleryGroupVariants = {
+  open: {
+    height: 'auto',
+  },
+  closed: {
+    height: 'var(--gallery-to-height)',
+  },
+};
+
+type GalleryGroupProps = {
+  groupName: GroupName;
+  title: string;
+  photoSrc: string;
+  pieces: Piece[];
+};
 function GalleryGroup({
   groupName,
   title,
   photoSrc,
-  items,
+  pieces,
 }: GalleryGroupProps) {
-  const [open, setOpen] = useState(false);
-  const firstTwo = items.slice(0, 2);
-  const rest = items.slice(2);
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
+  const [firstPiece, ...restPieces] = pieces;
+
+  const enoughPiecesToHide = pieces.length > 3;
+  const shouldHidePieces = !isOpen && enoughPiecesToHide;
+
+  const { firstGalleryItemRef, galleryContainerHeight } =
+    useGalleryContainerHeight({ shouldObserve: enoughPiecesToHide });
 
   const handleGalleryOpenChange = (open: boolean) => {
     if (!open) {
       router.push(`#group-${groupName}`);
     }
-    setOpen(open);
+    setIsOpen(open);
   };
 
   return (
@@ -132,78 +206,62 @@ function GalleryGroup({
         }
       />
 
-      <Collapsible open={open} onOpenChange={handleGalleryOpenChange}>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2 mt-4">
-          {firstTwo.map((p) => (
-            <Link
-              key={p.id}
-              href={`/pieces/${p.id}`}
-              className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
-              aria-label={`Ver ${p.alt || p.id}`}
-              scroll={false}
-            >
-              <Image
-                src={p.imageSrc || '/placeholder.svg'}
-                alt={p.alt || p.id}
-                fill
-                sizes="(max-width: 640px) 50vw, 33vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                priority={p.priority ?? false}
-              />
-            </Link>
+      <div
+        className="relative"
+        style={
+          {
+            '--gallery-to-height': `${galleryContainerHeight}px`,
+          } as CSSProperties
+        }
+      >
+        <motion.div
+          id={`group-${groupName}-gallery`}
+          variants={galleryGroupVariants}
+          initial={false}
+          animate={shouldHidePieces ? 'closed' : 'open'}
+          transition={{ duration: 0.4 }}
+          className={cn(
+            'grid grid-cols-2 sm:grid-cols-3 auto-rows-min gap-1 sm:gap-2 mt-4 relative pb-2 overflow-hidden'
+          )}
+        >
+          {shouldHidePieces && (
+            <div
+              className={cn(
+                'absolute bottom-0 left-0 right-0 h-[30%] z-10 bg-background',
+                !isOpen && 'mask-t-to-80%'
+              )}
+            />
+          )}
+          <GalleryItem
+            piece={firstPiece}
+            ref={firstGalleryItemRef as RefObject<HTMLAnchorElement>}
+          />
+          {restPieces.map((p) => (
+            <GalleryItem key={p.id} piece={p} />
           ))}
-
-          <CollapsibleContent className="contents">
-            <AnimatePresence>
-              {open &&
-                rest.map((p, index) => (
-                  <AnimatedLink
-                    href={`/pieces/${p.id}`}
-                    scroll={false}
-                    className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 shadow-sm"
-                    aria-label={`Ver ${p.alt || p.id}`}
-                    key={p.id}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: 0.05 * (index % 3),
-                      ease: 'easeOut',
-                    }}
-                  >
-                    <Image
-                      src={p.imageSrc || '/placeholder.svg'}
-                      alt={p.alt || p.id}
-                      fill
-                      sizes="(max-width: 640px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      priority={p.priority ?? false}
-                    />
-                  </AnimatedLink>
-                ))}
-            </AnimatePresence>
-          </CollapsibleContent>
+        </motion.div>
+      </div>
+      {enoughPiecesToHide && (
+        <div className="mt-4 flex justify-center items-center">
+          <Button
+            aria-expanded={isOpen ? 'true' : 'false'}
+            aria-controls={`group-${groupName}-gallery`}
+            variant="outline"
+            className="rounded-full"
+            onClick={() => handleGalleryOpenChange(!isOpen)}
+          >
+            {isOpen ? (
+              <span className="inline-flex items-center gap-2">
+                <MinusIcon className="size-4" /> Ver menos
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-2">
+                <PlusIcon className="size-4" /> Ver más
+              </span>
+            )}
+          </Button>
         </div>
-
-        {rest.length > 0 && (
-          <div className="mt-4 flex justify-center items-center">
-            <CollapsibleTrigger asChild>
-              <Button variant="outline" className="rounded-full">
-                {open ? (
-                  <span className="inline-flex items-center gap-2">
-                    <MinusIcon className="size-4" /> Ver menos
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-2">
-                    <PlusIcon className="size-4" /> Ver más
-                  </span>
-                )}
-              </Button>
-            </CollapsibleTrigger>
-          </div>
-        )}
-      </Collapsible>
+      )}
     </section>
   );
 }
@@ -219,7 +277,7 @@ export function GroupedGalleries() {
           groupName={g.name}
           title={g.title}
           photoSrc={g.photoSrc}
-          items={groupedPieces[g.name]}
+          pieces={groupedPieces[g.name]}
         />
       ))}
     </div>
