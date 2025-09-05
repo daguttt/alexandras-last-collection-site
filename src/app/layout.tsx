@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Nunito_Sans } from 'next/font/google';
 
-import { PostHogProvider } from '@/components/posthog-provider';
-
 import './globals.css';
 
 const fogtwono5 = localFont({
@@ -36,9 +34,7 @@ export default function RootLayout({
       className={`${fogtwono5.variable} ${nunitoSans.variable} font-body motion-safe:scroll-smooth`}
     >
       <head></head>
-      <body>
-        <PostHogProvider>{children}</PostHogProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
