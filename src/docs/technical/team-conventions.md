@@ -9,3 +9,7 @@
 # Import and exports
 
 - Favor named exports over default exports
+
+## Using environemnt variables
+
+- Make sure to use the `env` constant from `src/env.ts` file for type-safe access to environment variabes
