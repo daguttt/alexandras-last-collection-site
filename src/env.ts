@@ -7,11 +7,21 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1),
+    NEXT_PUBLIC_POSTHOG_HOST: z
+      .string()
+      .url()
+      .default('https://us.i.posthog.com'),
+    NEXT_PUBLIC_POSTHOG_ENABLED: z
+      .string()
+      .transform((val) => val === 'true')
+      .default('true'),
   },
   emptyStringAsUndefined: true,
 
   // For Next.js >= 13.4.4, you only need to destructure client variables:
   experimental__runtimeEnv: {
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    NEXT_PUBLIC_POSTHOG_ENABLED: process.env.NEXT_PUBLIC_POSTHOG_ENABLED,
   },
 });
